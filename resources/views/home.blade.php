@@ -7,10 +7,9 @@
     <div class="row">
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+            <div class="small-box" style="background-color: #fff;">
+                <div class="inner">                    
+                    <img src="https://owner.warungmitra.com/img/produk_1571670302.jpg" style="max-width: 100%;" alt="Logo Image">
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
