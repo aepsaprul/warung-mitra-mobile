@@ -5,61 +5,26 @@
 <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box" style="background-color: #fff;">
-                <div class="inner">                    
-                    <img src="https://owner.warungmitra.com/img/produk_1571670302.jpg" style="max-width: 100%;" alt="Logo Image">
+        @foreach ($produks as $produk) 
+                <div class="col-lg-3 col-xs-6">
+                    <a href="google"> 
+                        <!-- small box -->
+                        <div class="small-box" style="background-color: #fff;">
+                            <div class="inner" style="height: 200px;">                    
+                                <img src="http://warung-mitra-admin.test/img/{{ $produk->gambar1 }}" style="max-width: 100%;" alt="Logo Image">
+                            </div>
+                            <div class="small-box-footer bg-orange">
+                                <div style="height: 30px;">
+                                    <small>{{ substr($produk->nama, 0, 20) }}...</small>
+                                </div>
+                                <div style="height: 20px;">
+                                    <small>Rp. {{ rupiah($produk->harga) }}</small></small>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                    <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-                <div class="inner">
-                    <h3>44</h3>
-                    <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-                <div class="inner">
-                    <h3>65</h3>
-                    <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
+        @endforeach
     </div>
     <!-- /.row -->
 </section>
