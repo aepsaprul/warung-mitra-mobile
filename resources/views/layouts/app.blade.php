@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Warung mitra | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
@@ -19,6 +20,8 @@
             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
 
+        @yield('style')
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -33,7 +36,7 @@
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="{{ url('/') }}" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>WM</b></span>
                     <!-- logo for regular state and mobile devices -->
@@ -64,7 +67,7 @@
                                 <li class="dropdown notifications-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-exchange"></i>
-                                        <span class="label label-warning">1</span>
+                                        <span class="label label-warning">{{ $transaksi }}</span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="header">TRANSAKSI</li>
@@ -86,13 +89,13 @@
                                         <i class="fa fa-database"></i>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li class="header">Poin sebanyak 100.000</li>
+                                        <li class="header">Poin sebanyak {{ rupiah(Auth::user()->poin) }}</li>
                                     </ul>
                                 </li>
                                 <li class="dropdown notifications-menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <a href="{{ route('keranjang.index') }}">
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="label label-warning">10</span>
+                                        <span class="label label-warning">{{ $order_sementara == 0 ? '' : $order_sementara }}</span>
                                     </a>
                                 </li>
                                 <!-- User Account: style can be found in dropdown.less -->
@@ -101,7 +104,7 @@
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li class="header">halo, Aep</li>
+                                        <li class="header">halo, {{ strtoupper(Auth::user()->username) }}</li>
                                         <li>
                                             <!-- inner menu: contains the actual data -->
                                             <ul class="menu">
@@ -186,5 +189,7 @@
         <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+
+        @yield('script')
     </body>
 </html>
