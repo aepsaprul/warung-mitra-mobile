@@ -109,7 +109,7 @@
                                             <!-- inner menu: contains the actual data -->
                                             <ul class="menu">
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="{{ route('profil') }}">
                                                         <i class="fa fa-angle-right text-aqua"></i> Profil
                                                     </a>
                                                 </li>
