@@ -90,7 +90,6 @@
                                         Warung mitra akan melakukan verifikasi paling lama 30 menit setelah kamu melakukan pembayaran. Jika kamu menghadapi kendala mengenai pembayaran, silahkan langsung hubungi melalui kontak atau chat yang tersedia di website <a href="http://warungmitra.com" target="blank">www.warungmitra.com</a>.
                                     </p>
                                     <p><button class="btn btn-warning btn-block btn-cetak">CETAK</button></p>
-                                    <p><button class="btn btn-warning btn-block btn-kembali">KEMBALI</button></p>
                                 </div>
                             </div>
                         </div>                        
