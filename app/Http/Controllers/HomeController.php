@@ -37,7 +37,7 @@ class HomeController extends Controller
             $countOrders = 0;
         }
 
-        $kategoris = Kategori::get();
+        $kategoris = Kategori::all()->groupBy('grup');
         $sliders = Slider::get();
         $slidersides = Produk::all()->random(3);
         $produks = Produk::orderBy('id', 'desc')->paginate(30);
@@ -69,7 +69,7 @@ class HomeController extends Controller
 
         $data = $request->attr;
 
-        $kategoris = Kategori::get();
+        $kategoris = Kategori::all()->groupBy('grup');
         $produks = Produk::where('nama', 'LIKE', '%'. $data . '%')
         ->orWhereHas('data_kategori', function($query) use ($data) {
             $query->where('nama', 'LIKE', '%'. $data . '%');
