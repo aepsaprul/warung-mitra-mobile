@@ -99,7 +99,7 @@ class HomeController extends Controller
             $countOrders = 0;
         }
 
-        $kategoris = Kategori::get();
+        $kategoris = Kategori::all()->groupBy('grup');
         $produk = Produk::find($id);
 
         return view('detail_produk', [

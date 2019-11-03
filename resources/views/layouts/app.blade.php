@@ -51,22 +51,33 @@
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                    @guest
-                        <div class="navbar-custom-menu">
-                            <ul class="nav navbar-nav">
-                                <!-- Notifications: style can be found in dropdown.less -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <form action="{{ route('search') }}" method="GET">
+                                        <li class="header">
+                                            <div class="input-group margin">
+                                                <input type="text" name="attr" class="form-control" placeholder="cari produk">
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </form>
+                                </ul>
+                            </li>
+                            @guest
                                 <li class="dropdown notifications-menu">
                                     <a href="{{ route('login') }}">Login</a>
                                 </li>
                                 <li class="dropdown notifications-menu">
                                     <a href="{{ route('register') }}">Register</a>
                                 </li>
-                            </ul>
-                        </div>     
-                    @else
-                        <div class="navbar-custom-menu">
-                            <ul class="nav navbar-nav">
-                                <!-- Notifications: style can be found in dropdown.less -->
+                            @else
                                 <li class="dropdown notifications-menu">
                                     <a href="{{ route('transaksi.index') }}">
                                         <i class="fa fa-exchange"></i>
@@ -115,9 +126,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
-                        </div>
-                    @endguest
+                            @endguest
+                        </ul>
+                    </div>
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
