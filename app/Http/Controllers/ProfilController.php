@@ -30,8 +30,9 @@ class ProfilController extends Controller
             $countOrders = 0;
         }
         
-        $kategoris = Kategori::get();
+        $kategoris = Kategori::all()->groupBy('grup');
         $profil = Auth::user();
+        
         return view('profil', [
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,

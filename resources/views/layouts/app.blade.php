@@ -20,6 +20,9 @@
             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
 
+        <!-- chat whatsapp -->
+        <link href="{{ asset('css/floating-wpp.css') }}" rel="stylesheet" type="text/css"/>
+
         @yield('style')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -158,11 +161,37 @@
             </div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.18
+                <div class="row">
+                    <div class="box box-solid col-xs-12">
+                        <div class="box-header">
+                            <h5>PETA SITUS WARUNGMITRA.COM</h5>
+                        </div>
+                        <div class="box-body">
+                            <p class="lead">Aturan Penggunaan</p>
+                            <p class="lead">Kebijakan Privasi</p>
+                            <p class="lead">Cara Beli</p>
+                            <p class="lead">Sejarah</p>
+                        </div>
+                    </div>
+                    <div class="box box-solid col-xs-12">
+                        <div class="box-header">
+                            <h5>KONTAK</h5>
+                        </div>
+                        <div class="box-body">
+                            <p class="lead">Phone / WhatsApp: 085228348588</p>
+                            <p class="lead">Phone / WhatsApp: 088215425668</p>
+                            <p class="lead">
+                                <div class="text-center">
+                                    <a class="btn btn-social-icon btn-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/warungMitraa/"><i class="fa fa-facebook"></i></a>
+                                    <a class="btn btn-social-icon btn-instagram" title="Instagram" target="_blank" href="https://www.instagram.com/warungmitra/"><i class="fa fa-instagram"></i></a>
+                                    <a class="btn btn-social-icon btn-instagram" title="Youtube" target="_blank" href="https://youtu.be/xcL1po_LHzw"><i class="fa fa-youtube-play"></i></a>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-center">Copyright © 2019 warungmitra.com</div>
                 </div>
-                <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-                reserved.
+                <div id="btnWhatsapp"></div>
             </footer>
             <!-- /.control-sidebar -->
             <!-- Add the sidebar's background. This div must be placed
@@ -185,6 +214,25 @@
         <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+
+        <script src="{{ asset('js/floating-wpp.js') }}"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btnWhatsapp').floatingWhatsApp({
+                    phone: '+6281337667055',
+                    popupMessage: 'Ada yang bisa kami bantu?',
+                    message: "",
+                    showPopup: true,
+                    showOnIE: false,
+                    headerTitle: 'Welcome!',
+                    headerColor: 'crimson',
+                    backgroundColor: 'crimson',
+                    buttonImage: '<img src="http://warung-mitra-client.test/whatsapp.svg" />',
+                    position: "right"
+                });
+            });
+        </script>
 
         @yield('script')
     </body>

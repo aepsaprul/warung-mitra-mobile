@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,11 @@ class TransaksiController extends Controller
         } else {
             $countOrderSementara = 0;
         }
+
+        $kategoris = Kategori::all()->groupBy('grup');
+        
         return view('transaksi', [
+            'kategoris' => $kategoris,
             'transaksi' => $countOrders,
             'order_sementara' => $countOrderSementara,
             'orders' => $data_orders

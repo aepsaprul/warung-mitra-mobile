@@ -25,7 +25,7 @@ class KeranjangController extends Controller
             $countOrder = 0;
         }
 
-        $kategoris = Kategori::get();
+        $kategoris = Kategori::all()->groupBy('grup');
 
         return view('keranjang', [
                 'transaksi' => $countOrders,
