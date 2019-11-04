@@ -81,7 +81,11 @@
                                 <li class="dropdown notifications-menu">
                                     <a href="{{ route('transaksi.index') }}">
                                         <i class="fa fa-exchange"></i>
-                                        <span class="label label-warning">{{ $transaksi }}</span>
+                                        @if ($transaksi == 0)
+                                            <span></span>
+                                        @else                                                
+                                            <span class="label label-warning">{{ $transaksi }}</span>
+                                        @endif
                                     </a>
                                 </li>
                                 <li class="dropdown notifications-menu">
