@@ -79,6 +79,10 @@
                                 </li>
                             @else
                                 <li class="dropdown notifications-menu">
+                                    <a href="{{ route('tracking') }}">
+                                        <i class="fa fa-truck"></i>
+                                    </a>
+                                </li><li class="dropdown notifications-menu">
                                     <a href="{{ route('transaksi.index') }}">
                                         <i class="fa fa-exchange"></i>
                                         @if ($transaksi == 0)
@@ -142,6 +146,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU NAVIGASI</li>
+                    <li><a href="{{ url('/') }}"><i class="fa fa-arrow-circle-o-right"></i> <span>Beranda</span></a></li>
                     @foreach ($kategoris as $grup => $kategori)
                         @if (count($kategori) > 1)
                             <li class="treeview">

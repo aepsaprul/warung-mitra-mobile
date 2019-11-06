@@ -20,7 +20,9 @@ Route::any('/search', 'HomeController@search')->name('search');
 Route::get('/detail_produk/{id}', 'HomeController@detail_produk')->name('detail_produk');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/profil', 'ProfilController@index')->name('profil');    
+    Route::get('/profil', 'ProfilController@index')->name('profil'); 
+    Route::get('/tracking', 'TrackingController@index')->name('tracking'); 
+    Route::post('/tracking/show', 'TrackingController@show')->name('tracking.show');    
 
     Route::get('/tampil_keranjang', 'KeranjangController@index')->name('keranjang.index');
     Route::get('/masukkan_keranjang/{id}', 'KeranjangController@masukkan_keranjang')->name('keranjang.masukkan_keranjang');
