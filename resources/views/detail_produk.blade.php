@@ -24,6 +24,14 @@
                 </div>
                 <div class="box-body">
                     <div class="col-xs-12">
+                        <h4>Deskripsi</h4>
+                        <p class="lead">
+                            {!! $produk->deskripsi !!}
+                        </p>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="col-xs-12">
                         @if(session('stok'))
                             <div class="alert alert-danger">
                                 {{session('stok')}}

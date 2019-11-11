@@ -75,7 +75,7 @@
                                             <tr>
                                                 <td><input type="radio" name="metode_pembayaran" class="minimal" value="3"></td>
                                                 <td><img src="{{ asset('logo-bank-bca.png') }}" alt="warung-image" class="tf-aplikasi" style="padding: 10px;"></td>
-                                                <td>Transfer Aplikasi koperasi mitra berkah usaha atas nama Warung mitra</td>
+                                                <td>Pembayaran ke rekening 434-0071-439 a.n <strong>Endro prasetyo,se</strong></td>
                                             </tr>
                                             <tr>
                                                 <td><input type="radio" name="metode_pembayaran" class="minimal" value="4"></td>
