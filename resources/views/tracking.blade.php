@@ -68,7 +68,7 @@
                                 "            " + value.keterangan
                                 "        </div>" +
                                 "    </div>" +
-                                "</li>" +
+                                "</li>";
                             
                             $('.timeline').append(dataTimeline);
                         });
