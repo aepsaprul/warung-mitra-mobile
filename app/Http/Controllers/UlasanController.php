@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Produk;
+use App\Slider;
 use App\Ulasan;
 use App\Kategori;
-use App\Tracking;
 use App\OrderSementara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TrackingController extends Controller
+class UlasanController extends Controller
 {
-    public function index()
+    public function index($id)
     {
         if (Auth::user()) {
             $email = Auth::user()->email;
@@ -23,31 +24,40 @@ class TrackingController extends Controller
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
 
-            $ulasans = Ulasan::where('customer_id', $customer_id)->get();
+            $ulasans = Ulasan::where('customer_id', $customer_id)->where('status', null)->get();
             $countUlasans = count($ulasans);
         } else {
             $countOrderSementara = 0;
             $countOrders = 0;
-            $ulasans = 0;
+            $countUlasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
+        $sliders = Slider::get();
+        $ulasan = Ulasan::find($id);
+        $produk = Produk::find($ulasan->produk_id);
 
-        return view('tracking', [
+        return view('ulasan', [
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris,
                 'ulasans' => $ulasans,
-                'countUlasans' => $countUlasans
+                'ulasan' => $ulasan,
+                'countUlasans' => $countUlasans,
+                'produk' => $produk
             ]);
     }
 
-    public function show(Request $request)
+    public function store(Request $request)
     {
-        $trackings = Tracking::where('kode', $request->kode)->get();
+        $ulasan = Ulasan::find($request->ulasan_id);
+        $ulasan->star = $request->rate;
+        $ulasan->komentar = $request->komentar;
+        $ulasan->status = 1;
+        $ulasan->save();
 
         return response()->json([
-            'data' => $trackings
+            'data' => "sukses"
         ]);
     }
 }

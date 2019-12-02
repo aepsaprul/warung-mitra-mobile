@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Produk;
+use App\Ulasan;
 use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
@@ -21,8 +22,12 @@ class KeranjangController extends Controller
             $id = Auth::user()->id;
             $orders = Order::where('customer_id', $id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
+
+            $ulasans = Ulasan::where('customer_id', $id)->get();
+            $countUlasans = count($ulasans);
         } else {
             $countOrder = 0;
+            $ulasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
@@ -30,7 +35,9 @@ class KeranjangController extends Controller
         return view('keranjang', [
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrder,
-                'kategoris' => $kategoris
+                'kategoris' => $kategoris,
+                'ulasans' => $ulasans,
+                'countUlasans' => $countUlasans
             ]);
     }
 

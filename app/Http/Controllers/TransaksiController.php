@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Ulasan;
 use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
@@ -21,6 +22,9 @@ class TransaksiController extends Controller
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
 
+            $ulasans = Ulasan::where('customer_id', $customer_id)->get();
+            $countUlasans = count($ulasans);
+
             $data_orders = Order::where('customer_id', $customer_id)
             ->with('data_order_detail')
             ->limit(5)
@@ -28,6 +32,7 @@ class TransaksiController extends Controller
             ->get();
         } else {
             $countOrderSementara = 0;
+            $ulasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
@@ -36,7 +41,9 @@ class TransaksiController extends Controller
             'kategoris' => $kategoris,
             'transaksi' => $countOrders,
             'order_sementara' => $countOrderSementara,
-            'orders' => $data_orders
+            'orders' => $data_orders,
+            'ulasans' => $ulasans,
+            'countUlasans' => $countUlasans
         ]);
     }
 

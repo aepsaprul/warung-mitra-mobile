@@ -106,6 +106,26 @@
                                         <span class="label label-warning">{{ $order_sementara == 0 ? '' : $order_sementara }}</span>
                                     </a>
                                 </li>
+                                <li class="dropdown notifications-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-bell"></i>
+                                        <span class="label label-warning">{{ $countUlasans == 0 ? '' : $countUlasans }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                @foreach ($ulasans as $ulasan)
+                                                    <li>
+                                                        <a href="{{ route('ulasan', ['id' => $ulasan->id]) }}">
+                                                            <u style="color: red;">ulasan</u> {{ $ulasan->data_produk->nama }}
+                                                        </a>
+                                                    </li>                                                    
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <!-- User Account: style can be found in dropdown.less -->
                                 <li class="dropdown notifications-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

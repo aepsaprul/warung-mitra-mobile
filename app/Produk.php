@@ -28,4 +28,9 @@ class Produk extends Model
     {
         return $this->belongsTo('App\Kategori', 'kategori_id', 'id');
     }
+
+    public function data_ulasan()
+    {
+        return $this->hasMany('App\Ulasan', 'produk_id', 'id');
+    }
 }

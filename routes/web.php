@@ -22,7 +22,9 @@ Route::get('/detail_produk/{id}', 'HomeController@detail_produk')->name('detail_
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profil', 'ProfilController@index')->name('profil'); 
     Route::get('/tracking', 'TrackingController@index')->name('tracking'); 
-    Route::post('/tracking/show', 'TrackingController@show')->name('tracking.show');    
+    Route::post('/tracking/show', 'TrackingController@show')->name('tracking.show');
+    Route::get('/ulasan/{id}', 'UlasanController@index')->name('ulasan');     
+    Route::post('/ulasan/store', 'UlasanController@store')->name('ulasan.store');     
 
     Route::get('/tampil_keranjang', 'KeranjangController@index')->name('keranjang.index');
     Route::get('/masukkan_keranjang/{id}', 'KeranjangController@masukkan_keranjang')->name('keranjang.masukkan_keranjang');

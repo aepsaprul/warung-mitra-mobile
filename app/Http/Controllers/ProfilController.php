@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Ulasan;
 use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
@@ -25,9 +26,13 @@ class ProfilController extends Controller
             $customer_id = Auth::user()->id;
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
+
+            $ulasans = Ulasan::where('customer_id', $customer_id)->get();
+            $countUlasans = count($ulasans);
         } else {
             $countOrderSementara = 0;
             $countOrders = 0;
+            $ulasans = 0;
         }
         
         $kategoris = Kategori::all()->groupBy('grup');
@@ -37,7 +42,9 @@ class ProfilController extends Controller
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
-                'profil' => $profil
+                'profil' => $profil,
+                'ulasans' => $ulasans,
+                'countUlasans' => $countUlasans
             ]);
     }
 }

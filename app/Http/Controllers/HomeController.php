@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Produk;
 use App\Slider;
+use App\Ulasan;
 use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
@@ -32,15 +33,20 @@ class HomeController extends Controller
             $customer_id = Auth::user()->id;
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
+
+            $ulasans = Ulasan::where('customer_id', $customer_id)->where('status', null)->get();
+            $countUlasans = count($ulasans);
         } else {
             $countOrderSementara = 0;
             $countOrders = 0;
+            $countUlasans = 0;
+            $ulasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
         $sliders = Slider::get();
         $slidersides = Produk::all()->random(3);
-        $produks = Produk::orderBy('id', 'desc')->paginate(30);
+        $produks = Produk::orderBy('id', 'desc')->with('data_ulasan')->paginate(30);
 
         return view('home', [
                 'transaksi' => $countOrders,
@@ -48,7 +54,9 @@ class HomeController extends Controller
                 'kategoris' => $kategoris, 
                 'produks' => $produks, 
                 'sliders' => $sliders, 
-                'slidersides' => $slidersides
+                'slidersides' => $slidersides,
+                'ulasans' => $ulasans,
+                'countUlasans' => $countUlasans
             ]);
     }
 
@@ -62,9 +70,13 @@ class HomeController extends Controller
             $customer_id = Auth::user()->id;
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
+
+            $ulasans = Ulasan::where('customer_id', $customer_id)->where('status', null)->get();
+            $countUlasans = count($ulasans);
         } else {
             $countOrderSementara = 0;
             $countOrders = 0;
+            $ulasans = 0;
         }        
 
         $data = $request->attr;
@@ -80,7 +92,9 @@ class HomeController extends Controller
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
-                'produks' => $produks
+                'produks' => $produks,
+                'ulasans' => $ulasans,
+                'countUlasans' => $countUlasans
             ]);
     }
 
@@ -94,19 +108,25 @@ class HomeController extends Controller
             $customer_id = Auth::user()->id;
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
+
+            $ulasans = Ulasan::where('customer_id', $customer_id)->where('status', null)->get();
+            $countUlasans = count($ulasans);
         } else {
             $countOrderSementara = 0;
             $countOrders = 0;
+            $ulasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
-        $produk = Produk::find($id);
+        $produk = Produk::with(['data_ulasan', 'data_ulasan.data_customer'])->find($id);
 
         return view('detail_produk', [
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
-                'produk' => $produk
+                'produk' => $produk,
+                'ulasans' => $ulasans,
+                'countUlasans' => $countUlasans
             ]);
     }
 }
