@@ -22,7 +22,7 @@ class TransaksiController extends Controller
             $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
 
-            $ulasans = Ulasan::where('customer_id', $customer_id)->get();
+            $ulasans = Ulasan::where('customer_id', $customer_id)->where('status', null)->get();
             $countUlasans = count($ulasans);
 
             $data_orders = Order::where('customer_id', $customer_id)

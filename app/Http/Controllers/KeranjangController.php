@@ -23,7 +23,7 @@ class KeranjangController extends Controller
             $orders = Order::where('customer_id', $id)->where('status_bayar', 0)->get();
             $countOrders = count($orders);
 
-            $ulasans = Ulasan::where('customer_id', $id)->get();
+            $ulasans = Ulasan::where('customer_id', $id)->where('status', null)->get();
             $countUlasans = count($ulasans);
         } else {
             $countOrder = 0;

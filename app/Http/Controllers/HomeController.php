@@ -86,6 +86,7 @@ class HomeController extends Controller
         ->orWhereHas('data_kategori', function($query) use ($data) {
             $query->where('nama', 'LIKE', '%'. $data . '%');
         })
+        ->with('data_ulasan')
         ->paginate(30);
 
         return view('search', [
