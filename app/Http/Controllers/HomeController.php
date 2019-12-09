@@ -116,6 +116,7 @@ class HomeController extends Controller
             $countOrderSementara = 0;
             $countOrders = 0;
             $ulasans = 0;
+            $countUlasans = 0;
         }
 
         $kategoris = Kategori::all()->groupBy('grup');
