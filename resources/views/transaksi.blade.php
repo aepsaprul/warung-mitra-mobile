@@ -15,7 +15,7 @@
                                 <div class="col-xs-6">
                                     <img style="max-width: 100px;" src="http://warung-mitra-admin.test/img/{{ $order_detail->data_produk->gambar1 }}">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" style="margin-bottom: 100px;">
                                     {{ $order_detail->data_produk->nama }}<br>
                                     Jumlah: {{ $order_detail->qty }}
                                 </div>
@@ -36,6 +36,7 @@
                             <p><a href="#"><u></u></a></p>
                         @endif
                     </div>
+                    
                 </div>
             @endforeach
         </div>

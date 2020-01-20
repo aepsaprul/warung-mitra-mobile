@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Warung mitra | Dashboard</title>
+        <title>{{ config('app.name', 'Warung Mitra') }}</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
@@ -167,33 +167,29 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU NAVIGASI</li>
                     <li><a href="{{ url('/') }}"><i class="fa fa-arrow-circle-o-right"></i> <span>Beranda</span></a></li>
-                    @guest
-                    
-                    @else
-                        @foreach ($kategoris as $grup => $kategori)
-                            @if (count($kategori) > 1)
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i class="fa fa-arrow-circle-o-right"></i> <span>{{ $grup }}</span>
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-left pull-right"></i>
-                                        </span>                                    
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        @foreach ($kategori as $kategori_sub)
-                                            <li>
-                                                <a href="{{ url('search?attr=' . $kategori_sub->nama) }}"><i class="fa fa-circle-o"></i>{{ $kategori_sub->nama }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>            
-                            @else
-                                @foreach ($kategori as $kategori_sub)
-                                    <li><a href="{{ url('search?attr=' . $kategori_sub->nama) }}"><i class="fa fa-arrow-circle-o-right"></i> <span>{{ $kategori_sub->nama }}</span></a></li>
-                                @endforeach
-                            @endif
-                        @endforeach
-                    @endguest
+                    @foreach ($kategoris as $grup => $kategori)
+                        @if (count($kategori) > 1)
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-arrow-circle-o-right"></i> <span>{{ $grup }}</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>                                    
+                                </a>
+                                <ul class="treeview-menu">
+                                    @foreach ($kategori as $kategori_sub)
+                                        <li>
+                                            <a href="{{ url('search?attr=' . $kategori_sub->nama) }}"><i class="fa fa-circle-o"></i>{{ $kategori_sub->nama }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>            
+                        @else
+                            @foreach ($kategori as $kategori_sub)
+                                <li><a href="{{ url('search?attr=' . $kategori_sub->nama) }}"><i class="fa fa-arrow-circle-o-right"></i> <span>{{ $kategori_sub->nama }}</span></a></li>
+                            @endforeach
+                        @endif
+                    @endforeach
                 </ul>
                 </section>
                 <!-- /.sidebar -->
