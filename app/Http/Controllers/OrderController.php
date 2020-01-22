@@ -85,7 +85,7 @@ class OrderController extends Controller
             "dropshipper_nama" => $dropshipper_nama,
             "dropshipper_detail" => $dropshipper_detail,
             "total_harga" => $request->total_harga,
-            "ongkir" => null,
+            "ongkir" => $request->ongkir,
             "total_bayar" => $request->total_bayar,
             "status_bayar" => 0
         ]);

@@ -121,6 +121,10 @@
                                                 <td class="nominal lead" style="text-align: right;">Rp. <span>{{ rupiah($orders->total_harga) }}</span></td>
                                             </tr>
                                             <tr>
+                                                <td class="lead">Ongkir</td>
+                                                <td class="nominal lead" style="text-align: right;">Rp. <span>{{ rupiah($orders->ongkir) }}</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td class="lead">Tas Plastik</td>
                                                 <td class="nominal lead" style="text-align: right;">Rp. <span class="plastik">{{ rupiah(100) }}</span></td>
                                             </tr>

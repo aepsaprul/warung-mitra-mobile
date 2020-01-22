@@ -78,10 +78,29 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="desa" class="col-sm-2 control-label">Kelurahan/Desa</label>
+                                            <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
+                        
+                                            <div class="col-sm-10">
+                                                <select id="kecamatan" class="form-control kecamatan" name="kecamatan">
+                                                    <option value="">--Pilih Kecamatan--</option>
+                                                    <option value="Cilacap Utara">Cilacap Utara</option>
+                                                    <option value="Cilacap Tengah">Cilacap Tengah</option>
+                                                    <option value="Cilacap Selatan">Cilacap Selatan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {{-- <label for="desa" class="col-sm-2 control-label">Kelurahan/Desa</label>
                         
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="desa" name="desa" placeholder="Desa">
+                                            </div> --}}
+                                            <label for="desa" class="col-sm-2 control-label">Kelurahan/Desa</label>
+                        
+                                            <div class="col-sm-10">
+                                                <select name="desa" id="desa" class="form-control kecamatan">
+                                                    // data desa
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-error">
@@ -113,19 +132,6 @@
                                                 {{ $errors->first('rw') }}
                                             @endif
                                         </div>
-                                        <div class="form-group">
-                                            <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
-                        
-                                            <div class="col-sm-10">
-                                                <select name="kecamatan" id="kecamatan" class="form-control kecamatan" name="kecamatan">
-                                                    <option value="">--Pilih Kecamatan--</option>
-                                                    <option value="Cilacap Utara">Cilacap Utara</option>
-                                                    <option value="Cilacap Tengah">Cilacap Tengah</option>
-                                                    <option value="Cilacap Selatan">Cilacap Selatan</option>
-                                                    <option value="4">Lainnya...</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="text-error">
                                             @if ($errors->has('kecamatan'))
                                                 {{ $errors->first('kecamatan') }}
@@ -142,30 +148,6 @@
                                             @if ($errors->has('kode_pos'))
                                                 {{ $errors->first('kode_pos') }}
                                             @endif
-                                        </div>
-                                        <div class="form-kabupaten-kodepos">
-                                            <p style="font-size: 0.8em;"><i>Note: untuk kecamatan lainnya ada tambahan ongkir</i></p>
-                                            <div class="form-group">
-                                                <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
-                            
-                                                <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="kecamatan" name="kecamatan2" placeholder="Kecamatan">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="kabupaten" class="col-sm-2 control-label">Kabupaten</label>
-                            
-                                                <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="kabupaten" name="kabupaten" placeholder="Kabupaten">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="kode_pos" class="col-sm-2 control-label">Kode Pos</label>
-                            
-                                                <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="kode_pos" name="kode_pos" placeholder="Kode Pos">
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
@@ -224,6 +206,11 @@
                                                 <input type="hidden" name="total_harga" class="total_harga" value="{{ $total_harga->sumHarga }}">
                                             </tr>
                                             <tr>
+                                                <td>Ongkir</td>
+                                                <td style="text-align: right;">Rp. <span class="ongkir"></span></td>
+                                                <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
+                                            </tr>
+                                            <tr>
                                                 <td>Tas Plastik</td>
                                                 <td class="nominal" style="text-align: right;">Rp. <span class="plastik">{{ rupiah(100) }}</span></td>
                                                 <input type="hidden" name="plastik" class="plastik_hidden" value="100">
@@ -233,8 +220,8 @@
                                         <table class="table-bayar" style="width: 100%;">
                                             <tr>
                                                 <td><strong> Total Bayar: </strong></td>
-                                                <td class="nominal" style="text-align: right;"><strong> Rp. <span class="total_bayar">{{ rupiah($total_harga->sumHarga + 100) }}</span> </strong></td>
-                                                <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="{{ $total_harga->sumHarga + 100 }}">
+                                                <td class="nominal" style="text-align: right;"><strong> Rp. <span class="total_bayar"></span> </strong></td>
+                                                <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="">
                                             </tr>
                                         </table>
                                         <br>
@@ -293,22 +280,126 @@
                     var kecamatanValue = $(this).val();
 
                     if(kecamatanValue == "Cilacap Utara") {
-                        $('.form-kabupaten-kodepos').hide();
-                        $('.label-kecamatan').show();
+                        $('#desa').empty();
+                        var dataDesa = "" +
+                            "<option value=\"\">--Pilih Desa--</option>" +
+                            "<option value=\"Gumilir\">Gumilir</option>" +
+                            "<option value=\"Karang Talun\">Karang Talun</option>" +
+                            "<option value=\"Kebon Manis\">Kebon Manis</option>" +
+                            "<option value=\"Mertasinga\">Mertasinga</option>" +
+                            "<option value=\"Tritih Kulon\">Tritih Kulon</option>";
+
+                        $('#desa').append(dataDesa);
                     } else if(kecamatanValue == "Cilacap Tengah") {
-                        $('.form-kabupaten-kodepos').hide();
-                        $('.label-kecamatan').show();
+                        $('#desa').empty();
+                        var dataDesa = "" +
+                            "<option value=\"\">--Pilih Desa--</option>" +
+                            "<option value=\"Donan\">Donan</option>" +
+                            "<option value=\"Gunung Simping\">Gunung Simping</option>" +
+                            "<option value=\"Lomanis\">Lomanis</option>" +
+                            "<option value=\"Sidanegara\">Sidanegara</option>";
+
+                        $('#desa').append(dataDesa);
                     } else if(kecamatanValue == "Cilacap Selatan") {
-                        $('.form-kabupaten-kodepos').hide();
-                        $('.label-kecamatan').show();
-                    } else if(kecamatanValue == 4) {
-                        $('.label-kecamatan').hide();
-                        $('.form-kabupaten-kodepos').show();
+                        $('#desa').empty();
+                        var dataDesa = "" +
+                            "<option value=\"\">--Pilih Desa--</option>" +
+                            "<option value=\"Cilacap\">Cilacap</option>" +
+                            "<option value=\"Sidakaya\">Sidakaya</option>" +
+                            "<option value=\"Tambak Reja\">Tambak Reja</option>" +
+                            "<option value=\"Tegal Kamulyan\">Tegal Kamulyan</option>" +
+                            "<option value=\"Tegal Reja\">Tegal Reja</option>";
+
+                        $('#desa').append(dataDesa);
                     } else {
-                        $('.ongkir').append(0);
+                        // $('.ongkir').append(0);
                     }                    
                 });
-                $('.form-kabupaten-kodepos').hide();
+
+                $('#desa').on('change', function() {
+                    var desaValue = $(this).val();
+                    var harga = $('.total_harga').val();
+                    $('.ongkir').empty();
+                    $('.total_bayar').empty();
+
+                    if (desaValue == "Gumilir") {
+                        var ongkir = 9000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Karang Talun") {
+                        var ongkir = 8000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Kebon Manis") {
+                        var ongkir = 8000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Mertasinga") {
+                        var ongkir = 12000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Tritih Kulon") {
+                        var ongkir = 12000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Donan") {
+                        var ongkir = 5000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Gunung Simping") {
+                        var ongkir = 6000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Lomanis") {
+                        var ongkir = 6000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Sidanegara") {
+                        var ongkir = 8000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Cilacap") {
+                        var ongkir = 9000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Sidakaya") {
+                        var ongkir = 6000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Tambak Reja") {
+                        var ongkir = 8000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Tegal Kamulyan") {
+                        var ongkir = 10000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else if (desaValue == "Tegal Reja") {
+                        var ongkir = 7000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(harga) + ongkir + 100;
+                    } else {
+                        $('.ongkir').append(0);
+                    }
+
+                    $('.total_bayar').append(rupiah(total_bayar));
+                    $('.total_bayar_hidden').val(total_bayar);
+                });
+                
                 $('.form-dropshipper').hide();
 
                 $('#dropshipper').on('change', function() {
