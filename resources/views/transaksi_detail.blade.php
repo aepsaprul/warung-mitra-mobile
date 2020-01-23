@@ -94,6 +94,7 @@
                                             <li>Pagi pukul 10:00 s/d 12:00 (batas maksimal transfer pukul 09:00)</li>
                                             <li>Sore pukul 15:00 s/d 17:00 (transfer diatas pukul 09:00 s/d 14:00)</li>
                                             <li>Transfer diatas pukul 15:00 diantar besoknya pukul 10:00</li>
+                                            <li>kurir pakai <img src="{{ asset('kawanexpress.png') }}" alt="kawan express" class="tf-aplikasi" style="padding: 10px;"> </li>
                                         </ul>
                                     </div>
                                 </div>

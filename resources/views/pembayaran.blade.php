@@ -100,18 +100,6 @@
                                 </div>
                                 <div class="box box-solid">
                                     <div class="box-header">
-                                        <p class="lead">Jadwal Pengiriman</p>
-                                    </div>
-                                    <div class="box-body">
-                                        <ul>
-                                            <li>Pagi pukul 10:00 s/d 12:00 (batas maksimal transfer pukul 09:00)</li>
-                                            <li>Sore pukul 15:00 s/d 17:00 (transfer diatas pukul 09:00 s/d 14:00)</li>
-                                            <li>Transfer diatas pukul 15:00 diantar besoknya pukul 10:00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box box-solid">
-                                    <div class="box-header">
                                         <p class="lead">Detail Pembayaran</p>
                                     </div>
                                     <div class="box-body">
