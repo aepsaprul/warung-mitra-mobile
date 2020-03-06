@@ -51,7 +51,7 @@
                                             <span>Transfer aplikasi Warung Mitra</span>
                                         @elseif ($order->jenis_bayar == 2)
                                             <span>Transfer aplikasi Koperasi Mitra</span>
-                                        @elseif ($order->jenis_bayar == 3)
+                                        @elseif ($order->jenis_bayar == 3 || $order->jenis_bayar == 4)
                                             <span>Transfer bank</span>
                                         @else
                                             <span>Cash On Delivery</span>
@@ -79,6 +79,12 @@
                                         <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Endro prasetyo,se</strong> berikut:  </p>        
                                         <p>
                                             <strong>Bank BCA, </strong><input type="text" style="border: none; font-weight: bold;" value="434-0071-439" id="no_rek" readonly/>
+                                            <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                        </p>
+                                    @elseif ($order->jenis_bayar == 4)
+                                        <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Endro prasetyo,se</strong> berikut:  </p>        
+                                        <p>
+                                            <strong>Bank Mandiri, </strong><input type="text" style="border: none; font-weight: bold;" value="139-00-1002330-1" id="no_rek" readonly/>
                                             <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
                                         </p>
                                     @else

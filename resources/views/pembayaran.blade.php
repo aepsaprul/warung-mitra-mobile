@@ -79,8 +79,8 @@
                                             </tr>
                                             <tr>
                                                 <td><input type="radio" name="metode_pembayaran" class="minimal" value="4"></td>
-                                                <td><button class="btn btn-info" style="margin: 10px;">COD</button></td>
-                                                <td>khusus wilayah cilacap utara, tengah dan selatan bisa menghubungi kontak yang ada di website www.warungmitra.com</td>
+                                                <td><img src="{{ asset('logo_bank_mandiri.png') }}" alt="warung-image" class="tf-aplikasi" style="padding: 10px;"></td>
+                                                <td>Pembayaran ke rekening 434-0071-439 a.n <strong>Endro prasetyo,se</strong></td>
                                             </tr>
                                         </table>                                        
                                     </div>
