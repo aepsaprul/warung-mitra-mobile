@@ -126,6 +126,10 @@
                         <p class="lead">
                             {!! $produk->deskripsi !!}
                         </p>
+                        @if ($produk->video_id)
+                            <iframe width="100%" height="245" src="https://www.youtube.com/embed/{{ $produk->video_id }}">
+                            </iframe>                            
+                        @endif
                     </div>
                 </div>
                 <div class="box-body">
