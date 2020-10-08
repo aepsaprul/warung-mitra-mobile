@@ -28,7 +28,8 @@ class Order extends Model
         'ongkir', 
         'total_bayar', 
         'status_bayar', 
-        'jenis_bayar'
+        'jenis_bayar',
+        'margin'
     ];
 
     public function data_customer()

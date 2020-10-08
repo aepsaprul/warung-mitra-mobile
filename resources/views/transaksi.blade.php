@@ -13,7 +13,7 @@
                         <div class="row">
                             @foreach ($order->data_order_detail as $key => $order_detail)
                                 <div class="col-xs-6">
-                                    <img style="max-width: 100px;" src="http://warung-mitra-admin.test/img/{{ $order_detail->data_produk->gambar1 }}">
+                                    <img style="max-width: 100px;" src="http://localhost/warung-mitra/public/img/{{ $order_detail->data_produk->gambar1 }}">
                                 </div>
                                 <div class="col-xs-6" style="margin-bottom: 100px;">
                                     {{ $order_detail->data_produk->nama }}<br>

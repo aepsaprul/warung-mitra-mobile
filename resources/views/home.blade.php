@@ -85,7 +85,7 @@
                     <div class="carousel-inner">
                         @foreach ($sliders as $slider)
                             <div class="item {{ $slider->link }}">
-                                <img src="http://warung-mitra-admin.test/img/{{ $slider->gambar }}">
+                                <img src="http://localhost/warung-mitra/public/img/{{ $slider->gambar }}">
                             </div>                                
                         @endforeach
                     </div>
@@ -117,7 +117,7 @@
                                     <div class="col-md-3 col-sm-6">
                                         <figure class="card card-product">
                                             <div class="img-wrap" style="height: 180px;"> 
-                                                <img src="http://warung-mitra-admin.test/img/{{ $kebutuhanPokok->gambar1 }}" style="max-width: 100%;">
+                                                <img src="http://localhost/warung-mitra/public/img/{{ $kebutuhanPokok->gambar1 }}" style="max-width: 100%;">
                                             </div>
                                             <figcaption class="info-wrap" style="height: 15px;">
                                                 <a href="{{ route('detail_produk', ['id' => $kebutuhanPokok->id]) }}" class="title" style="font-size: 11px;">{{ substr($kebutuhanPokok->nama, 0, 30) }}</a>
@@ -208,7 +208,7 @@
                                         <div class="col-md-3 col-sm-6">
                                             <figure class="card card-product">
                                                 <div class="img-wrap" style="height: 180px;"> 
-                                                    <img src="http://warung-mitra-admin.test/img/{{ $barangPaketan->gambar1 }}" style="max-width: 100%;">
+                                                    <img src="http://localhost/warung-mitra/public/img/{{ $barangPaketan->gambar1 }}" style="max-width: 100%;">
                                                 </div>
                                                 <figcaption class="info-wrap" style="height: 15px;">
                                                     <a href="{{ route('detail_produk', ['id' => $barangPaketan->id]) }}" class="title" style="font-size: 11px;">{{ substr($barangPaketan->nama, 0, 30) }}</a>

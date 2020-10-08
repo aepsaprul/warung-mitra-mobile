@@ -26,6 +26,9 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
+        $jenis_bayar = $request->metode_pembayaran;
+        $bayar = $request->total_bayar;
+
         $orders = Order::where('customer_id', Auth::user()->id)->where('status_bayar', 0)->where('kode', $request->kode)->first();
         $orders->jenis_bayar = $request->metode_pembayaran;
 
@@ -33,8 +36,26 @@ class PembayaranController extends Controller
             $customer = Customer::where('id', Auth::user()->id)->first();
             $customer->poin = 0;
             $customer->save();
-            $orders->total_harga = $request->total_bayar;
         }
+
+        if ($jenis_bayar == 2) {
+            $margin = $bayar * 0.01;
+            $total_bayar = $bayar + $margin;
+        } elseif ($jenis_bayar == 3) {
+            $margin = $bayar * 0.02;
+            $total_bayar = $bayar * 0.02;
+        } elseif ($jenis_bayar == 4) {
+            $margin = $bayar * 0.03;
+            $total_bayar = $bayar * 0.03;
+        } elseif ($jenis_bayar == 5) {
+            $margin = $bayar * 0.04;
+            $total_bayar = $bayar * 0.04;
+        } else {
+            $total_bayar = $bayar;
+        }
+        
+        $orders->margin = $margin;
+        $orders->total_harga = $total_bayar;
 
         $orders->save();
 

@@ -50,7 +50,7 @@
                             "<div class=\"box box-solid\">" +
                             "   <div class=\"box-body\">" +
                             "        <div class=\"col-xs-6\">" +
-                            "            <img src=\"http://warung-mitra-admin.test/img/" + value.data_produk.gambar1 + "\" style=\"max-width: 100%;\" alt=\"image\">" +
+                            "            <img src=\"http://localhost/warung-mitra/public/img/" + value.data_produk.gambar1 + "\" style=\"max-width: 100%;\" alt=\"image\">" +
                             "       </div>" +
                             "       <div class=\"col-xs-6\">" +
                             "           <p class=\"lead\">" +

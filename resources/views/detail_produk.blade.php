@@ -57,7 +57,7 @@
         <div class="col-lg-3 col-xs-12">
             <div class="box box-solid" style="padding-bottom: 15px;">
                 <div class="box-header">
-                    <img src="http://warung-mitra-admin.test/img/{{ $produk->gambar1 }}" style="max-width: 100%;" alt="image">
+                    <img src="http://localhost/warung-mitra/public/img/{{ $produk->gambar1 }}" style="max-width: 100%;" alt="image">
                 </div>
                 <div class="box-body">
                     <div class="col-xs-12">

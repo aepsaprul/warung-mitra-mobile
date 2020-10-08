@@ -46,8 +46,8 @@ class HomeController extends Controller
         $kategoris = Kategori::all()->groupBy('grup');
         $sliders = Slider::get();
         $slidersides = Produk::all()->random(3);
-        $kebutuhanPokoks = Produk::orderBy('id', 'desc')->where('kategori_id','1')->with('data_ulasan')->limit(10)->get();
-        $barangPaketans = Produk::orderBy('id', 'desc')->where('kategori_id','2')->with('data_ulasan')->limit(10)->get();
+        $kebutuhanPokoks = Produk::orderBy('id', 'desc')->where('kategori_id','27')->with('data_ulasan')->limit(10)->get();
+        $barangPaketans = Produk::orderBy('id', 'desc')->where('kategori_id','27')->with('data_ulasan')->limit(10)->get();
 
         return view('home', [
                 'transaksi' => $countOrders,

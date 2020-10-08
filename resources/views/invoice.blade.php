@@ -40,36 +40,95 @@
                         <div class="row">
                             <div class="box box-solid">
                                 <div class="box-header">
-                                        <div class="box-header">
-                                                <a href="{{ url('/') }}"><img src="{{ asset('adminlte/dist/img/a.png') }}" style="max-width: 30px;" class="img-circle" alt="Logo Image"> Warung Mitra</a>
-                                                <p class="pull-right lead">INVOICE</p>
+                                        <div class="box-header bg-primary">
+                                                <a href="{{ url('/') }}"><img src="{{ asset('adminlte/dist/img/c.png') }}" style="max-width: 200px;" alt="Logo Image"></a>
+                                                <p class="pull-right lead" style="color: white;">INVOICE</p>
                                             </div>
                                 </div>
                                 <div class="box-header text-center lead">
-                                    <strong>Pembayaran via
-                                        @if ($order->jenis_bayar == 1)
-                                            <span>Transfer aplikasi Warung Mitra</span>
-                                        @elseif ($order->jenis_bayar == 2)
-                                            <span>Transfer aplikasi Koperasi Mitra</span>
-                                        @elseif ($order->jenis_bayar == 3 || $order->jenis_bayar == 4)
-                                            <span>Transfer bank</span>
+                                    <strong>Pembayaran
+                                        @php
+                                            $totalmargin = $order->total_bayar + $order->margin;    
+                                        @endphp
+                                        
+                                        @if ($order->jenis_bayar == 2)
+                                            @php
+                                                $angsuran = $totalmargin;
+                                            @endphp 
+                                            <span>Tempo 1 Minggu</span>
+                                        @elseif ($order->jenis_bayar == 3)
+                                            @php
+                                                $angsuran = $totalmargin / 2;
+                                            @endphp
+                                            <span>Tempo 2 Minggu</span>
+                                        @elseif ($order->jenis_bayar == 4)
+                                            @php
+                                                $angsuran = $totalmargin / 3;
+                                            @endphp
+                                            <span>Tempo 3 Minggu</span>
+                                        @elseif ($order->jenis_bayar == 5)
+                                            @php
+                                                $angsuran = $totalmargin / 4;
+                                            @endphp
+                                            <span>Tempo 4 Minggu</span>
                                         @else
-                                            <span>Cash On Delivery</span>
+                                            <span>Cash</span>
                                         @endif
                                         
                                     </strong>
                                 </div>
                                 <div class="box-body">
-                                    <p class="batas_pembayaran text-center lead">Batas Pembayaran: <strong>2 Jam</strong></p>
-                                    <p class="jumlah_tagihan text-center lead">Jumlah tagihan:</p>
-                                    <p class=" text-center lead"><strong class="total_bayar">Rp. {{ rupiah($order->total_bayar) }}</strong></p>
+                                    {{-- <p class="batas_pembayaran text-center lead">Batas Pembayaran: <strong>2 Jam</strong></p> --}}
+                                    <p class="jumlah_tagihan text-center lead">Detail tagihan:</p>
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <th style="border-bottom: solid 1px;">Produk</th>
+                                            <th style="text-align: center; border-bottom: solid 1px;">Jml</th>
+                                            <th style="text-align: center; border-bottom: solid 1px;">Harga</th>
+                                        </tr>
+                                        @foreach ($orders as $order_item)
+                                        <tr>
+                                            <td>{{ $order_item->data_produk->nama }}</td>
+                                            <td style="text-align: center;">{{ $order_item->qty }}</td>
+                                            <td style="text-align: right;">{{ $order_item->harga }}</td>
+                                        </tr>                                            
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="2">Plastik</td>
+                                            <td style="text-align: right;">100</td>
+                                        </tr>
+                                        {{-- <tr>
+                                            <td colspan="2">Margin</td>
+                                            <td style="text-align: right;">{{ $order->margin }}</td>
+                                        </tr> --}}
+                                        <tr>
+                                            <td colspan="2" style="text-align: left; font-weight: bold;">Total</td>
+                                            <td style="text-align: right; font-weight: bold;">Rp. {{ rupiah($order->total_bayar + $order->margin) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: left; font-weight: bold;">Angsuran</td>
+                                            <td style="text-align: right; font-weight: bold;">Rp. {{ rupiah(ceil($angsuran)) }} / Minggu</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: left; font-weight: bold;">Tgl Mulai</td>
+                                            <td style="text-align: right; font-weight: bold;">{{ tgl_indo(date('Y-m-d')) }}</td>
+                                        </tr>
+                                    </table>
+                                    {{-- <p class=" text-center lead"><strong class="total_bayar">Rp. {{ rupiah($order->total_bayar) }}</strong></p> --}}
+                                    <br>
                                     <p class="kode_tagihan">Kode Tagihan:</p>
                                     <p>
                                         <input type="text" style="border: none; font-weight: bold;" value="{{ $order->kode }}" id="kodeTagihan" readonly/>
                                         <button type="button" style="border: none; background: none; color: grey;" id="copyKodeTagihan" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
                                     </p>
 
-                                    @if ($order->jenis_bayar == 2)
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Endro prasetyo,se</strong> berikut:  </p>        
+                                    <p>
+                                        <strong>Bank BCA, </strong><input type="text" style="border: none; font-weight: bold;" value="434-0071-439" id="no_rek" readonly/>
+                                        <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                    </p>
+
+                                    {{-- @if ($order->jenis_bayar == 2)
                                         <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Warung mitra</strong> berikut: </p>        
                                         <p>
                                             <input type="text" style="border: none; font-weight: bold;" value="11100-00093-0000001" id="no_rek" readonly/>
@@ -87,9 +146,15 @@
                                             <strong>Bank Mandiri, </strong><input type="text" style="border: none; font-weight: bold;" value="139-00-1002330-1" id="no_rek" readonly/>
                                             <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
                                         </p>
-                                    @else
+                                    @elseif ($order->jenis_bayar == 5)
+                                        <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Endro prasetyo,se</strong> berikut:  </p>        
+                                        <p>
+                                            <strong>Bank Mandiri, </strong><input type="text" style="border: none; font-weight: bold;" value="139-00-1002330-1" id="no_rek" readonly/>
+                                            <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                        </p> --}}
+                                    {{-- @else
                                         <span>bertemu langsung dengan penjual</span>
-                                    @endif
+                                    @endif --}}
                                 </div>
                                 <div class="box-body">
                                     <p style="text-align: justify;">

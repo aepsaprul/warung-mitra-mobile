@@ -44,7 +44,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="{{ url('/') }}" class="navbar-brand">Warung Mitra</a>
+                            <a href="{{ url('/') }}" class="navbar-brand"><img src="{{ asset('adminlte/dist/img/c.png') }}" style="max-width: 100px;" alt="Logo Image"></a>
                             <button type="button" class="navbar-toggle collapsed">
                                 DETAIL BELANJA
                             </button>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="box-body">
                                         <table>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td><input type="radio" name="metode_pembayaran" class="minimal" value="2" checked></td>
                                                 <td><img src="{{ asset('koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
                                                 <td>Transfer Aplikasi koperasi mitra berkah usaha atas nama Warung mitra</td>
@@ -81,6 +81,29 @@
                                                 <td><input type="radio" name="metode_pembayaran" class="minimal" value="4"></td>
                                                 <td><img src="{{ asset('logo_bank_mandiri.png') }}" alt="warung-image" class="tf-aplikasi" style="padding: 10px;"></td>
                                                 <td>Pembayaran ke rekening 434-0071-439 a.n <strong>Endro prasetyo,se</strong></td>
+                                            </tr> --}}
+                                            <tr>
+                                                <td><input type="radio" name="metode_pembayaran" class="minimal" value="6" checked></td>
+                                                <td><img src="{{ asset('koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
+                                                <td>Transfer Aplikasi koperasi mitra berkah usaha ke 11100-00093-0000001 a.n Warung mitra</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><p style="padding-left: 30px; font-style: italic;">Belum install aplikasi? <a href="">klik disini</a></p></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><label><input type="radio" name="metode_pembayaran" class="minimal" value="1"> &nbsp&nbsp Cash</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><label><input type="radio" name="metode_pembayaran" class="minimal" value="2"> &nbsp&nbsp Tempo 1 Minggu</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><label><input type="radio" name="metode_pembayaran" class="minimal" value="3"> &nbsp&nbsp Tempo 2 Minggu</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><label><input type="radio" name="metode_pembayaran" class="minimal" value="4"> &nbsp&nbsp Tempo 3 Minggu</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><label><input type="radio" name="metode_pembayaran" class="minimal" value="5"> &nbsp&nbsp Tempo 4 Minggu</label></td>
                                             </tr>
                                         </table>                                        
                                     </div>
@@ -110,12 +133,17 @@
                                             </tr>
                                             <tr>
                                                 <td class="lead">Ongkir</td>
-                                                <td class="nominal lead" style="text-align: right;">Rp. <span>{{ rupiah($orders->ongkir) }}</span></td>
+                                                {{-- <td class="nominal lead" style="text-align: right;">Rp. <span>{{ rupiah($orders->ongkir) }}</span></td> --}}
+                                                <td class="nominal lead" style="text-align: right;"><span>Gratis</span></td>
                                             </tr>
                                             <tr>
                                                 <td class="lead">Tas Plastik</td>
                                                 <td class="nominal lead" style="text-align: right;">Rp. <span class="plastik">{{ rupiah(100) }}</span></td>
                                             </tr>
+                                            {{-- <tr>
+                                                <td class="lead">Margin</td>
+                                                <td class="nominal lead" style="text-align: right;">Rp. <span class="margine">{{ rupiah(0) }}</span></td>
+                                            </tr> --}}
                                             <tr>
                                                 <td class="lead"><label for="poin"><input type="checkbox" name="poin" class="minimal poin" id="poin" value="{{ $orders->data_customer->poin }}"> Poin: </label></td>
                                                 <td class="nominal lead" style="text-align: right;"><span class="val_poin">{{ rupiah($orders->data_customer->poin) }}</span></td>
@@ -128,6 +156,24 @@
                                                 <td class="lead"><strong> Total Bayar: </strong></td>
                                                 <td class="nominal lead" style="text-align: right;"><strong> Rp. <span class="total_bayar">{{ rupiah($orders->total_bayar) }}</span> </strong></td>
                                                 <input type="hidden" name="total_bayar" id="hidden_total_bayar" value="{{ $orders->total_bayar }}">
+                                            </tr>
+                                        </table>
+                                        {{-- <table class="table-bayar" style="width: 100%;">
+                                            <tr>
+                                                <td class="lead"><strong> Margin: </strong></td>
+                                                <td class="nominal lead" style="text-align: right;"><strong>Rp. <span class="margine">{{ rupiah(0) }}</span></strong></td>
+                                            </tr>
+                                        </table> --}}
+                                        <table class="table-bayar" style="width: 100%;">
+                                            <tr>
+                                                <td class="lead"><strong> Angsuran: </strong></td>
+                                                <td class="nominal lead" style="text-align: right;"><strong>Rp. <span class="angsuran">{{ rupiah(0) }}</span> / Minggu</strong></td>
+                                            </tr>
+                                        </table>
+                                        <table class="table-bayar tgl_mulai" style="width: 100%;">
+                                            <tr>
+                                                <td class="lead"><strong> Tgl Mulai: </strong></td>
+                                                <td class="nominal lead" style="text-align: right;"><strong><span class="tgl_mulai">{{ tgl_indo(date('Y-m-d')) }}</span></strong></td>
                                             </tr>
                                         </table>
                                         <br>
@@ -185,6 +231,8 @@
                     return rupiah;
                 }
 
+                $('.tgl_mulai').hide();
+
                 $('#poin').on('ifChanged', function() {
                     var poin = $('#hidden_poin').val();
                     var total_bayar = $('#hidden_total_bayar').val();
@@ -203,6 +251,46 @@
                 });
 
                 // ifChecked
+                $('input[type="radio"].minimal').on('ifChecked', function() {
+                    var valueRadio = $(this).val();
+                    var total_bayar = $('#hidden_total_bayar').val();
+
+                    if(valueRadio == '2') {
+                        var margine = parseInt(total_bayar) * 0.01;
+                        var total = parseInt(total_bayar) + parseInt(margine);
+                        var angsuran = parseInt(total) / 1;
+                        $('.margine').text(rupiah(margine));
+                        $('.total_bayar').text(rupiah(total));
+                        $('.angsuran').text(rupiah(Math.ceil(angsuran)));
+                        $('.tgl_mulai').show();
+                    } else if(valueRadio == '3') {
+                        var margine = parseInt(total_bayar) * 0.02;
+                        var total = parseInt(total_bayar) + parseInt(margine);
+                        var angsuran = parseInt(total) / 2;
+                        $('.margine').text(rupiah(margine));
+                        $('.total_bayar').text(rupiah(total));
+                        $('.angsuran').text(rupiah(Math.ceil(angsuran)));
+                        $('.tgl_mulai').show();
+                    } else if(valueRadio == '4') {
+                        var margine = parseInt(total_bayar) * 0.03;
+                        var total = parseInt(total_bayar) + parseInt(margine);
+                        var angsuran = parseInt(total) / 3;
+                        $('.margine').text(rupiah(margine));
+                        $('.total_bayar').text(rupiah(total));
+                        $('.angsuran').text(rupiah(Math.ceil(angsuran)));
+                        $('.tgl_mulai').show();
+                    } else if(valueRadio == '5') {
+                        var margine = parseInt(total_bayar) * 0.04;
+                        var total = parseInt(total_bayar) + parseInt(margine);
+                        var angsuran = parseInt(total) / 4;
+                        $('.margine').text(rupiah(margine));
+                        $('.total_bayar').text(rupiah(total));
+                        $('.angsuran').text(rupiah(Math.ceil(angsuran)));
+                        $('.tgl_mulai').show();
+                    } else {
+                        $('.margine').text(rupiah(0));
+                    }
+                })
                 // ifChanged
                 // ifClicked
                 // ifUnchecked

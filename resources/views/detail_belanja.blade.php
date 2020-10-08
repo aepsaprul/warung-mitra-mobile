@@ -181,7 +181,7 @@
                                     @foreach ($orders as $key => $order)
                                     <div class="box-body">
                                         <div class="col-xs-6">
-                                            <img src="http://warung-mitra-admin.test/img/{{ $order->data_produk->gambar1 }}" style="max-width: 100%;" alt="image">
+                                            <img src="http://localhost/warung-mitra/public/img/{{ $order->data_produk->gambar1 }}" style="max-width: 100%;" alt="image">
                                         </div>
                                         <div class="col-xs-6">
                                             <p class="lead">
@@ -207,8 +207,8 @@
                                             </tr>
                                             <tr>
                                                 <td>Ongkir</td>
-                                                <td style="text-align: right;">Rp. <span class="ongkir"></span></td>
-                                                <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
+                                                <td style="text-align: right;">Gratis</span></td>
+                                                <input type="hidden" name="ongkir" class="ongkir_hidden" value="0">
                                             </tr>
                                             <tr>
                                                 <td>Tas Plastik</td>
@@ -323,72 +323,72 @@
                     $('.total_bayar').empty();
 
                     if (desaValue == "Gumilir") {
-                        var ongkir = 9000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Karang Talun") {
-                        var ongkir = 8000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Kebon Manis") {
-                        var ongkir = 8000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Mertasinga") {
-                        var ongkir = 12000;
+                        var ongkir = 00;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Tritih Kulon") {
-                        var ongkir = 12000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Donan") {
-                        var ongkir = 5000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Gunung Simping") {
-                        var ongkir = 6000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Lomanis") {
-                        var ongkir = 6000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Sidanegara") {
-                        var ongkir = 8000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Cilacap") {
-                        var ongkir = 9000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Sidakaya") {
-                        var ongkir = 6000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Tambak Reja") {
-                        var ongkir = 8000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Tegal Kamulyan") {
-                        var ongkir = 10000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
                     } else if (desaValue == "Tegal Reja") {
-                        var ongkir = 7000;
+                        var ongkir = 0;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(harga) + ongkir + 100;
